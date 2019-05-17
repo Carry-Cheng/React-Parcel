@@ -4,7 +4,7 @@ export default class Canvas extends Component {
 	render() {
 		return (
 			<div>
-				Canvas.
+				Canvas. hello.
 			</div>
 		)
 	}
