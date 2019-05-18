@@ -13,7 +13,8 @@ export default class Index extends Component {
 						</g>
 				</svg>
 				<h1>Hello World, React</h1>
-				<a href="/canvas">Canvas</a>
+				<a href="/canvas">Canvas Demo</a>
+				<a href="/demo">React Demo</a>
 			</div>
 		)
 	}

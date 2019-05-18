@@ -7,8 +7,10 @@ interface CanvasProps {
 }
  
 interface CanvasState {
-	canvasWidth: number,
-	canvasHeigth: number
+	canvasWidth: number;
+	canvasHeigth: number;
+	canvas: any;
+	context: any;
 }
 
 export default class Canvas extends Component<CanvasProps, CanvasState> {
@@ -16,7 +18,9 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 		super(props);
 		this.state = {
 			canvasWidth: document.body.clientWidth,
-			canvasHeigth: document.body.clientHeight
+			canvasHeigth: document.body.clientHeight,
+			canvas: undefined,
+			context: undefined
 		}
 	}
 
@@ -29,6 +33,11 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 	}
 
 	componentDidMount() {
-		console.info('con')
+		this.setState((state: CanvasState, props: CanvasProps) => {
+			return {
+				canvas: document.getElementById('canvas'),
+				context: state.canvas.getContext('2d')
+			}
+		});
 	}
 }

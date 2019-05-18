@@ -16,7 +16,7 @@
     "experimentalDecorators": true,
     "lib": [
       "es7",
-      "es5",
+      "es6",
       "es2015.promise",
       "es2015.generator",
       "dom"
