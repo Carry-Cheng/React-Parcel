@@ -7,21 +7,21 @@ interface CanvasProps {
 }
  
 interface CanvasState {
-	canvasWidth: number;
-	canvasHeigth: number;
-	canvas: any;
-	context: any;
+	readonly canvasWidth: number;
+	readonly canvasHeigth: number;
 }
 
 export default class Canvas extends Component<CanvasProps, CanvasState> {
+	// canvas instance
+	canvas: HTMLCanvasElement = undefined;
+	context: CanvasRenderingContext2D = undefined;
+
 	constructor(props: CanvasProps) {
 		super(props);
 		this.state = {
-			canvasWidth: document.body.clientWidth,
-			canvasHeigth: document.body.clientHeight,
-			canvas: undefined,
-			context: undefined
-		}
+			canvasWidth: document.documentElement.clientWidth,
+			canvasHeigth: document.documentElement.clientHeight
+		};
 	}
 
 	render() {
@@ -33,11 +33,27 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 	}
 
 	componentDidMount() {
-		this.setState((state: CanvasState, props: CanvasProps) => {
+		this.initCanvas();
+	}
+
+	initCanvas = () => {
+		this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
+		this.context = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+		window.addEventListener('resize', this.windowResizeEvent);
+	}
+
+	windowResizeEvent = () => {
+		this.setState(() => {
 			return {
-				canvas: document.getElementById('canvas'),
-				context: state.canvas.getContext('2d')
+				canvasWidth: document.documentElement.clientWidth,
+				canvasHeigth: document.documentElement.clientHeight
 			}
 		});
 	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.windowResizeEvent);
+	}
+
+	
 }

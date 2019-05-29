@@ -12,7 +12,8 @@ export default class Index extends Component {
 								<path d="M520.5 78.1z"/>
 						</g>
 				</svg>
-				<h1>Hello World, React</h1>
+				<h1>Hello World, React!</h1>
+				<h2>Build with Parcel!</h2>
 				<a href="/canvas">Canvas Demo</a>
 				<a href="/demo">React Demo</a>
 			</div>
