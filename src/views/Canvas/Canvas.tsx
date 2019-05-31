@@ -60,7 +60,7 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 		}, () => {
 			this.clearCanvas();
 			// this.drawQuadraticCurveHigh();
-
+			this.drawSportLine();
 		});
 	}
 
@@ -126,10 +126,11 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 		this.linePoints = [];
 		this.linePoints.push({ x: CanvasHelper.center().x, y: CanvasHelper.center().y});
 		this.context.moveTo(CanvasHelper.center().x, CanvasHelper.center().y);
-		const interval = setInterval(() => {
+		let interval = setInterval(() => {
 			let over = this.startSportLine();
 			if (over) {
 				clearInterval(interval);
+				interval = null;
 			}
 		}, 50);
 	}

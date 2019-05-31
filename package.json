@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "rimraf build & parcel index.html -p 6100 --open --no-source-maps",
+    "dev": "rimraf dist & parcel index.html -p 6100 --open --no-source-maps",
 		"build": "rimraf build & parcel build index.html -d build --no-source-maps",
 		"build:docs": "rimraf docs & parcel build index.html -d docs"
   },
