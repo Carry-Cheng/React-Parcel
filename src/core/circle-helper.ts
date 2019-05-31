@@ -7,12 +7,12 @@ import { Point } from './canvas';
  */
 export default class CircleHelper {
 
-	public static getFirstQuadrantPoint(origin: Point, distance: number = 1000) {
+	public static getFirstQuadrantPoint(origin: Point, distance: number = 10) {
 		// 0° ~ 90°
-		let radian = Math.PI*2 / Math.random() * 90;
+		let radian = Math.PI*2 / 360 * Math.random() * 90;
 		return {
-			x: origin.x + Math.cos(radian),
-			y: origin.y + Math.sin(radian)
+			x: origin.x + distance * Math.cos(radian),
+			y: origin.y - distance * Math.sin(radian)
 		}
 	}
 }

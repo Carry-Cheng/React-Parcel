@@ -126,21 +126,32 @@ export default class Canvas extends Component<CanvasProps, CanvasState> {
 		this.linePoints = [];
 		this.linePoints.push({ x: CanvasHelper.center().x, y: CanvasHelper.center().y});
 		this.context.moveTo(CanvasHelper.center().x, CanvasHelper.center().y);
-		setInterval(() => {
-			this.startSportLine()
+		const interval = setInterval(() => {
+			let over = this.startSportLine();
+			if (over) {
+				clearInterval(interval);
+			}
 		}, 50);
 	}
 
-	startSportLine = () => {
+	startSportLine = (): boolean => {
 		let last = this.linePoints[this.linePoints.length - 1];
 		// 朝第一象限运动
 		let current = CircleHelper.getFirstQuadrantPoint(last);
 		this.linePoints.push(current);
-		this.context.moveTo(CanvasHelper.center().x, CanvasHelper.center().y);
+		if (this.linePoints.length > 100) {
+			this.linePoints.splice(0,1);
+		}
+		this.context.moveTo(this.linePoints[0].x, this.linePoints[0].y);
 		this.linePoints.forEach(element => {
 			this.context.lineTo(element.x, element.y);
 		});
 		this.context.stroke();
+		if (this.linePoints.length === 100) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
